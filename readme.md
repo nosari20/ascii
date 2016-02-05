@@ -4,14 +4,14 @@
 
 composer install
 
-Back-End
+**Back-End**
 
-Laravel: https://laravel.com/docs/5.2
-DOMPDF: https://github.com/barryvdh/laravel-dompdf
+    Laravel: https://laravel.com/docs/5.2
+    DOMPDF: https://github.com/barryvdh/laravel-dompdf
 
 
-Font-End
+  **Font-End**
 
-Bootstrap: http://getbootstrap.com/
-Font Awesome: https://fortawesome.github.io/Font-Awesome/icons/
+    Bootstrap: http://getbootstrap.com/
+    Font Awesome: https://fortawesome.github.io/Font-Awesome/icons/
 
