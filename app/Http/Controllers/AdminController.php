@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use PDF;
 class AdminController extends DisplayController
 {
     /**
@@ -31,5 +32,12 @@ class AdminController extends DisplayController
         die();
         
         return view('admin.users',$this->data);
+    }
+    
+    public function userPDF($id){
+        $data=array();
+        
+        $pdf = PDF::loadView('pdf.user', $data);
+        return $pdf->download('user.pdf');
     }
 }

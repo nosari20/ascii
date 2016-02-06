@@ -67,7 +67,7 @@
                         </div>
                         
                         <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Niveau</label>
+                            <label class="col-md-4 control-label">Etudes</label>
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="level" value="{{ old('level') }}">

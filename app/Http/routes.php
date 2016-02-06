@@ -30,19 +30,45 @@
 
 
 Route::group(['middleware' => 'web'], function () {
+    
     //Home
-    Route::get('/', 'HomeController@index');
-    //Authentification
+    Route::get('/',  [
+        'as' => 'home', 'uses' =>'HomeController@index']
+    );
+    Route::get('/news',  [
+        'as' => 'news', 'uses' =>'HomeController@news']
+    );
+    Route::get('/office',  [
+        'as' => 'office', 'uses' =>'HomeController@office']
+    );
+    Route::get('/location',  [
+        'as' => 'location', 'uses' =>'HomeController@location']
+    );
+    
+    //Authentication
     Route::auth();
     
     
+    //Users
+    Route::get('/profile',  [
+        'as' => 'profile', 'uses' =>'UserController@profile']
+    );
+    
     //Writers
-    Route::get('/writer/users', 'WriterController@users');
+    Route::get('/writer/users',  [
+        'as' => 'writer_users', 'uses' =>'WriterController@users']
+    );
     
     
     
     //Admin
-    Route::get('/admin/users', 'AdminController@users');
+    Route::get('/admin/users',  [
+        'as' => 'admin_users', 'uses' =>'AdminController@users']
+    );
+    Route::get('/admin/users/pdf/{id}',  [
+        'as' => 'admin_users_pdf', 'uses' =>'AdminController@userPDF']
+    );
+    
     
     
 

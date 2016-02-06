@@ -19,13 +19,24 @@ class HomeController extends DisplayController
         
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('public.home',$this->data);
+    }
+    
+    public function office()
+    {
+        return view('public.office',$this->data);
+    }
+    
+    public function location()
+    {
+        return view('public.location',$this->data);
+    }
+    
+    public function news()
+    {
+        return view('public.news',$this->data);
     }
 }
