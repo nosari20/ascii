@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +24,28 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+
+
+
+
+
+Route::group(['middleware' => 'web'], function () {
+    //Home
+    Route::get('/', 'HomeController@index');
+    //Authentification
+    Route::auth();
+    
+    
+    //Writers
+    Route::get('/writer/users', 'WriterController@users');
+    
+    
+    
+    //Admin
+    Route::get('/admin/users', 'AdminController@users');
+    
+    
+
+
+   
 });

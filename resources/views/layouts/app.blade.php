@@ -45,7 +45,21 @@
                                 </li> 
                                 <li>
                                     <a href="#"><i class="fa fa-facebook-official"></i></i></a>
-                                </li>                                                            
+                                </li>  
+                                @if (Auth::guest())
+                                    <li><a href="{{ url('/login') }}">Connexion</a></li>
+                                    <li><a href="{{ url('/register') }}">Inscription</a></li>
+                                @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            {{ Auth::user()->firstname }} {{ Auth::user()->name }} <span class="caret"></span>
+                                        </a>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Déconnexion</a></li>
+                                        </ul>
+                                    </li>
+                                @endif                                                          
                                
                             </ul>
                         </nav>
@@ -74,11 +88,7 @@
                                 </li>  
                                 <li>
                                     <a href="#">Cours</a>
-                                </li>                       
-                                <li>
-                                    <a href="#">Inscription</a>
                                 </li>
-                                
                                 
                             </ul>
                             <ul class="nav navbar-nav top-info">
@@ -95,6 +105,20 @@
                                     <a href="#"><i class="fa fa-envelope"></i></a>
                                     <a href="#"><i class="fa fa-facebook-official"></i></a>
                                 </li>  
+                                @if (Auth::guest())
+                                <li><a href="{{ url('/login') }}">Connexion</a></li>
+                                <li><a href="{{ url('/register') }}">Inscription</a></li>
+                                @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            {{ Auth::user()->firstname }} {{ Auth::user()->name }} <span class="caret"></span>
+                                        </a>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Déconnexion</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
                                 
                                 
                                 
@@ -141,3 +165,20 @@
     
     </body>
 </html>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+       
