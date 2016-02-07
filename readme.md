@@ -15,7 +15,7 @@ composer install
     Bootstrap: http://getbootstrap.com/
     Font Awesome: https://fortawesome.github.io/Font-Awesome/icons/
 
-        **env**
+  **env**
 
         APP_ENV=local
         APP_DEBUG=true
