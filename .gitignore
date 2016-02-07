@@ -4,4 +4,5 @@ bootstrap/cache/
 .env.php
 .env
 .env.example
+.htaccess
 

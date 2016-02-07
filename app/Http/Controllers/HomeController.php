@@ -39,4 +39,9 @@ class HomeController extends DisplayController
     {
         return view('public.news',$this->data);
     }
+    
+    public function calendar()
+    {
+        return view('public.calendar',$this->data);
+    }
 }

@@ -44,6 +44,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/location',  [
         'as' => 'location', 'uses' =>'HomeController@location']
     );
+     Route::get('/calendar',  [
+        'as' => 'calendar', 'uses' =>'HomeController@calendar']
+    );
     
     //Authentication
     Route::auth();
@@ -51,17 +54,24 @@ Route::group(['middleware' => 'web'], function () {
     
     //Users
     Route::get('/profile',  [
-        'as' => 'profile', 'uses' =>'UserController@profile']
-    );
+        'as' => 'user_dashboard', 'uses' =>'UserController@dashboard']
+    )->middleware('dashboard');
     
     //Writers
+    Route::get('/writer',  [
+        'as' => 'writer_dashboard', 'uses' =>'WriterController@dashboard']
+    );
     Route::get('/writer/users',  [
         'as' => 'writer_users', 'uses' =>'WriterController@users']
     );
     
     
     
+    
     //Admin
+     Route::get('/admin',  [
+        'as' => 'admin_dashboard', 'uses' =>'AdminController@dashboard']
+    );
     Route::get('/admin/users',  [
         'as' => 'admin_users', 'uses' =>'AdminController@users']
     );

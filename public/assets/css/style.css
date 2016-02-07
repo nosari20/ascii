@@ -6,7 +6,7 @@
 .row{
     margin-bottom: 20px;
 }
-li .fa,button .fa{
+li .fa,button .fa, li .glyphicon{
     margin-right: 3px;
 }
 
@@ -498,10 +498,61 @@ div.skill {
 
 
 
+/* calendar */
 
+.calendar button{
+    background-color: #010135;
+    color: white;
+}
+.calendar button.active{
+    background-color: rgba(1, 1, 53, 0.72);;
+    color: white;
+}
+.calendar button:hover, .calendar button.btn:focus{
+    color: white;
+    outline:none;
+}
+.calendar #cal-slide-content, .calendar #cal-slide-content:hover {
+    background: #010135;
+}
+#cal-slide-content a.event-item {
+    line-height: initial !important;
+}
+a.event{
+    margin-bottom: 2px;
+}
 
+.calendar .event{
+    background-color: initial;
+    width: 18px;
+    height: auto;
+    margin-right: 2px;
+    -webkit-box-shadow: initial;
+    box-shadow: initial;
+    border-radius: 0;
+    border: none;
+    
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
 
+.event-party:before {
+    content: "\f0fc";
+    color:#FCB124;
+  
+}
 
+.event-school:before {
+    content: "\f19d";
+    color:red;
+}
+
+.event-game:before {
+    content: "\f11b";
+    color:grey;
+}
 
 
 /* maps */
@@ -519,23 +570,6 @@ div.skill {
     padding-top: 100%;
 }
 
-/*
-@media (max-width: 767px) {
-    #map{
-        height: 80vw;
-    }
-}
-@media (max-width: 900px) {
-    #map{
-        height: 400px;
-    }
-}
-@media (min-width: 900px) {
-   #map{
-        height: 600px;
-    } 
-}
-*/
 
 
 /* footer */
@@ -546,5 +580,65 @@ footer{
     text-align: center;
 }
 
+/*--------------------------------------------------------------------------------------------*/
+
+/* dashboard */
+
+/* dashboard menu */
+
+
+.dashboard aside{
+    min-height: 60vh;
+}
+.dashboard aside .submenu ul{
+    
+    transform: scaleY(0);
+    transform-origin: 50% 0;
+    transition: transform .2s linear;
+    overflow: hidden;
+    
+    
+}
+.dashboard aside ul li a{
+    color:#010135;
+}
+.dashboard aside .submenu:hover ul{
+    transform: scaleY(1);
+}
+.dashboard .content-box, .content-box-large {
+   margin-bottom:30px;
+   background:#fff;
+   padding:10px;
+   border-left:1px solid #eee;
+   border-top:1px solid #eee;
+   border-right:2px solid #eee;
+   border-bottom:2px solid #eee; 
+}
+
+.dashboard .content-box-large {
+  padding: 20px;
+}
+
+.dashboard .box-with-header {
+  border-top: none;
+  border-top-left-radius:0px;
+  border-top-right-radius:0px;
+}
+
+.dashboard .content-box-header {
+  min-height: 40px;
+   font-size: 16px;
+   background:#f5f5f5;
+   border-top-left-radius:5px;
+   border-top-right-radius:5px;
+   padding:10px;
+   border-left:1px solid #eee;
+   border-top:1px solid #eee;
+   border-right:2px solid #eee;
+}
+
+.dashboard .content-box-header:after {
+  clear:both;
+}
 
 

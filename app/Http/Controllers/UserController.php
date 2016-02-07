@@ -30,6 +30,15 @@ class UserController extends DisplayController
         return view('user.profile',$this->data);
     }
     
+    public function dashboard()
+    {
+        $user=Auth::user();
+        $this->data['user']=$user;
+        $this->data['skills']=$user->skills;
+        
+        return view('user.dashboard',$this->data);
+    }
+    
     
     
     

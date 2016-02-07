@@ -18,7 +18,8 @@ class Writer
     public function handle($request, Closure $next)
     {
         if (Auth::user()) {
-            if(Auth::user()->right<0)
+           
+            if(Auth::user()->right<1)
                 if ($request->ajax() || $request->wantsJson()) {
                     return response('Unauthorized.', 401);
                 } else {

@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
 use PDF;
+use Auth;
 class AdminController extends DisplayController
 {
     /**
@@ -16,6 +17,7 @@ class AdminController extends DisplayController
     public function __construct()
     {
         parent::__construct();
+        $this->middleware('auth');
         $this->middleware('admin');
         
     }
@@ -25,6 +27,20 @@ class AdminController extends DisplayController
      *
      * @return \Illuminate\Http\Response
      */
+     
+     public function dashboard()
+    {
+        $user=Auth::user();
+        $this->data['user']=$user;
+        $this->data['skills']=$user->skills;
+        
+        return view('admin.dashboard',$this->data);
+    }
+     
+     
+     
+     
+     
     public function users()
     {
         $this->data['users']=User::all();
@@ -33,6 +49,8 @@ class AdminController extends DisplayController
         
         return view('admin.users',$this->data);
     }
+    
+    
     
     public function userPDF($id){
         $data=array();

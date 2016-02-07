@@ -58,7 +58,7 @@
                                         </a>
 
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('profile') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
+                                            <li><a href="{{ route('user_dashboard') }}"><i class="fa fa-btn fa-user"></i>Profil</a></li>
                                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Déconnexion</a></li>
                                         </ul>
                                     </li>
@@ -91,6 +91,9 @@
                                     <a href="{{route('news')}}">Actualités</a>
                                 </li>  
                                 <li>
+                                    <a href="{{route('calendar')}}">Calendrier</a>
+                                </li>
+                                <li>
                                     <a href="#">Cours</a>
                                 </li>
                                 
@@ -115,7 +118,7 @@
                                         </a>
 
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="{{ route('profile') }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
+                                            <li><a href="{{ route('user_dashboard') }}"><i class="fa fa-btn fa-user"></i>Profil</a></li>
                                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Déconnexion</a></li>
                                         </ul>
                                     </li>
@@ -136,12 +139,12 @@
         </header>
     
            <!-- Main -->
-        <div id="main" class="container">
+        <section id="main" class="container">
         
         
         @yield('content')
         
-        </div>  
+        </section>  
         <!-- End main --> 
         
             

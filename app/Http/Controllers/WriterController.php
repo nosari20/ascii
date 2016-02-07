@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 class WriterController extends DisplayController
 {
     /**
@@ -15,7 +16,8 @@ class WriterController extends DisplayController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('admin');
+        $this->middleware('auth');
+        $this->middleware('writer');
         
     }
 
@@ -32,4 +34,15 @@ class WriterController extends DisplayController
         
         return view('admin.users',$this->data);
     }
+    
+    public function dashboard()
+    {
+        $user=Auth::user();
+        $this->data['user']=$user;
+        $this->data['skills']=$user->skills;
+        
+        return view('writer.dashboard',$this->data);
+    }
+    
+    
 }
