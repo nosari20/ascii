@@ -1,6 +1,7 @@
 @extends('layouts.app')
     @section('extra-head')
         <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     @endsection
     @section('content')
         <div class="row dashboard">
@@ -39,7 +40,8 @@
                                         </figure>
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
-                                        <h2>{{$user->firstname}} {{$user->name}} @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
+                                        <a href="#" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}"></a>
+                                        <h2><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->name}}">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
                                         <p><strong>Etablissement: </strong>{{$user->school}} </p>
                                         <p><strong>Etudes: </strong>{{$user->level}} </p>
                     
@@ -63,10 +65,12 @@
 
     @section('extra-js')
 
+        <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
         <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+        
 
         <script type="text/javascript">
-        jQuery(function ($) {
+        $(document).ready(function() {
             $('.rating').each(function(){
                 var val=$(this).data('value');
                 $(this).shieldRating({
@@ -74,10 +78,31 @@
                     step: 0,
                     value: val,
                     enabled:false,
-                    markPreset: false
+                    markPreset: false,
+                     events: {
+                        change: function (e) { 
+                            alert(e.target.value());
+                        }
+                    }
                 });
             
             })
+            
+            $.fn.editable.defaults.mode = 'inline';
+                        $(document).ready(function() {
+                $('.editable').editable();
+            });
+            
+            
+            
+             //enable / disable
+            $('#enable').click(function() {
+                $('#user .editable').editable('toggleDisabled');
+            }); 
+            
+             //$('.rating').swidget().enabled(false);
+            
+            
         });
         </script>
     @endsection
