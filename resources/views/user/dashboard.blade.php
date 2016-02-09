@@ -11,7 +11,10 @@
                         <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i>Dashboard</a></li>
                         <li><a href="#"><i class="fa fa-user"></i>Profil</a></li>
                         <li><a href="#"><i class="fa fa-graduation-cap"></i>Cours</a></li>
-                        @include('writer.dashboard')
+                        @if($right>0)
+                            @include('writer.dashboard-menu')
+                        @endif
+                        
                    
                             
                     </ul>

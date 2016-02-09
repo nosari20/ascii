@@ -34,6 +34,7 @@ class UserController extends DisplayController
     {
         $user=Auth::user();
         $this->data['user']=$user;
+        $this->data['right']=$user->right;
         $this->data['skills']=$user->skills;
         
         return view('user.dashboard',$this->data);

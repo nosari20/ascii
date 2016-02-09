@@ -32,9 +32,10 @@ class AdminController extends DisplayController
     {
         $user=Auth::user();
         $this->data['user']=$user;
+        $this->data['right']=$user->right;
         $this->data['skills']=$user->skills;
         
-        return view('admin.dashboard',$this->data);
+        return view('user.dashboard',$this->data);
     }
      
      

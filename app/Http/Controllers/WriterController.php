@@ -39,9 +39,10 @@ class WriterController extends DisplayController
     {
         $user=Auth::user();
         $this->data['user']=$user;
+        $this->data['right']=$user->right;
         $this->data['skills']=$user->skills;
         
-        return view('writer.dashboard',$this->data);
+        return view('user.dashboard',$this->data);
     }
     
     
