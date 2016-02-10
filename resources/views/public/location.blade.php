@@ -5,6 +5,7 @@
     <div class="col-sm-6 col-md-8"> 
         <div id="map"></div>
     </div>
+    
     <div class="col-sm-6 col-md-4"> 
         <h2>Adresse :</h2>
         <p>Campus Aiguillettes, 54506 Vandœuvre-lès-Nancy</p>

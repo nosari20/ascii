@@ -4,7 +4,7 @@
         <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     @endsection
     @section('content')
-        <div class="row dashboard">
+        <div class="col-sm-12 col-md-12 dashboard">
             <aside class="col-xs-12 col-lg-2 content-box-large">
                 <ul class="nav">
                     
@@ -26,6 +26,9 @@
                 
                 <div class="col-md-12">
                     <div class="content-box-large">
+                        <div class="panel-heading">
+                            <button id="toggle-edit" data-state="disabled" class="button-edit" type="button"><i class="fa fa-pencil"></i></button>
+                        </div>
                         
                         <div class="panel-body">
                         <div class="details">
@@ -89,18 +92,30 @@
             })
             
             $.fn.editable.defaults.mode = 'inline';
-                        $(document).ready(function() {
-                $('.editable').editable();
+            $(document).ready(function() {
+                    $('.editable').editable({
+                        disabled:true
+                    });
             });
             
             
             
              //enable / disable
-            $('#enable').click(function() {
-                $('#user .editable').editable('toggleDisabled');
+            $('#toggle-edit').click(function() {
+                if($(this).data('state')=='disabled'){
+                    $('.editable').editable('toggleEnabled');                
+                    $('.rating').swidget().enabled(true);
+                    $(this).data('state','enabled');
+                }else{
+                    $('.editable').editable('toggleDisabled');                
+                    $('.rating').swidget().enabled(false);
+                    $(this).data('state','disabled');
+                }
+                
+                
             }); 
             
-             //$('.rating').swidget().enabled(false);
+            
             
             
         });

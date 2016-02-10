@@ -3,13 +3,14 @@
 .img-responsive{
     width: 100%;
 }
-.row{
-    margin-bottom: 20px;
-}
+
 li .fa,button .fa, li .glyphicon{
     margin-right: 3px;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
 /* header */
 header{
      background: #FFFFFF;
@@ -317,23 +318,11 @@ div.skill {
 .timeline > li {
     margin-bottom: 20px;
     position: relative;
+    clear:both;
 }
 
-.timeline > li:before,
-.timeline > li:after {
-    content: " ";
-    display: table;
-}
 
-.timeline > li:after {
-    clear: both;
-}
 
-.timeline > li:before,
-.timeline > li:after {
-    content: " ";
-    display: table;
-}
 
 .timeline > li:after {
     clear: both;
@@ -642,3 +631,20 @@ footer{
 }
 
 
+/*dashboard profile */
+a.editable{
+    color: black;
+    
+}
+
+.editable-click, a.editable-click, a.editable-click:hover {
+    border-bottom: dashed 1px black !important;
+    
+}
+
+.button-edit{
+    float: right;
+    background: transparent;
+    border:none;
+    outline-color:transparent;
+}

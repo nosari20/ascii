@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
 @endsection
 @section('content')
-<div class="row">
+<div class="col-sm-12 col-md-12">
     <div class="col-md-12 col-lg-12">
         <div class="details">
             <div class="col-sm-12">
