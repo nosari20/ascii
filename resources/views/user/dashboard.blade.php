@@ -37,7 +37,8 @@
                                     <div class="col-xs-12 col-sm-4 text-center  pull-right">                        
                                         <figure>
                                             <div class="col-sm-12 col-md-12 col-lg-12  profile-pic-wrapper">
-                                                <img src="{{Request::root()}}/upload/user/default.png" class="img-responsive">   
+                                                <img src="{{Request::root()}}/upload/user/default.png" class="img-responsive">
+                                                <button id="edit-img" class="button-edit hidden" type="button"><i class="fa fa-file-image-o"></i></i></button>   
                                             </div>                               
                                                     
                                         </figure>
@@ -143,6 +144,7 @@
              //enable / disable
             $('#toggle-edit').click(function() {
                 if($(this).data('state')=='disabled'){
+                    //enbale
                     $('.editable').editable("enable");  
                     $('.rating').each(function(){              
                         $(this).swidget().enabled(true);
@@ -150,7 +152,11 @@
                     $(this).data('state','enabled');
                     $(this).find('i').removeClass('fa-pencil');
                     $(this).find('i').addClass('fa-times');
+                    
+                    $('#edit-img').removeClass('hidden');
+                    
                 }else{
+                    //disable
                     $('.editable').editable("disable");                
                     $('.rating').each(function(){              
                         $(this).swidget().enabled(false);
@@ -158,6 +164,8 @@
                     $(this).data('state','disabled');
                     $(this).find('i').addClass('fa-pencil');
                     $(this).find('i').removeClass('fa-times');
+                    
+                    $('#edit-img').addClass('hidden');
                 }
                 
                 

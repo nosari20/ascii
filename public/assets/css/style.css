@@ -299,6 +299,15 @@ div.skill {
    border-radius:100%; 
 }
 
+
+#edit-img{
+    position: absolute;
+    z-index: 100;
+    top: auto;
+    bottom: -5;
+    bottom: 0px;
+    right: 10px;
+}
 /* editable */
 @media (max-width: 767px) {
     .editable-cancel{
@@ -312,6 +321,10 @@ div.skill {
         padding: 0 !important;
     }
 }
+
+
+
+
 
 /* timeline news */
 
