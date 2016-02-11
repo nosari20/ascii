@@ -7,6 +7,10 @@
 li .fa,button .fa, li .glyphicon{
     margin-right: 3px;
 }
+.xs-p0{
+    padding-right: 0;
+    padding-left: 0;
+}
 
 ::-webkit-scrollbar { 
     display: none; 
@@ -581,10 +585,27 @@ footer{
 }
 .dashboard aside .submenu ul{
     
-    transform: scaleY(0);
-    transform-origin: 50% 0;
-    transition: transform .2s linear;
+    
+    -webkit-transition: max-height .8s; 
+    -moz-transition: max-height .8s; 
+    -ms-transition: max-height .8s; 
+    -o-transition: max-height .8s; 
+    transition: max-height .8s;
     overflow: hidden;
+    max-height: 0;
+    
+    
+}
+
+@media (max-width: 767px) {
+    
+    .dashboard aside{
+      min-height: 0;
+   } 
+   .dashboard aside .nav> li{
+       display: inline-block;
+       vertical-align: top;
+   } 
     
     
 }
@@ -592,7 +613,7 @@ footer{
     color:#010135;
 }
 .dashboard aside .submenu:hover ul{
-    transform: scaleY(1);
+    max-height: 300px;
 }
 .dashboard .content-box, .content-box-large {
    margin-bottom:30px;
@@ -632,13 +653,10 @@ footer{
 
 
 /*dashboard profile */
-a.editable{
-    color: black;
-    
-}
+
 
 .editable-click, a.editable-click, a.editable-click:hover {
-    border-bottom: dashed 1px black !important;
+    border-bottom: none !important;
     
 }
 

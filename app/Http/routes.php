@@ -31,53 +31,72 @@
 
 Route::group(['middleware' => 'web'], function () {
     
-    //Home
-    Route::get('/',  [
-        'as' => 'home', 'uses' =>'HomeController@index']
-    );
-    Route::get('/news',  [
-        'as' => 'news', 'uses' =>'HomeController@news']
-    );
-    Route::get('/office',  [
-        'as' => 'office', 'uses' =>'HomeController@office']
-    );
-    Route::get('/location',  [
-        'as' => 'location', 'uses' =>'HomeController@location']
-    );
-     Route::get('/calendar',  [
-        'as' => 'calendar', 'uses' =>'HomeController@calendar']
-    );
+    //**       Public      **//
+        Route::get('/',  [
+            'as' => 'home', 'uses' =>'HomeController@index']
+        );
+        Route::get('/news',  [
+            'as' => 'news', 'uses' =>'HomeController@news']
+        );
+        Route::get('/office',  [
+            'as' => 'office', 'uses' =>'HomeController@office']
+        );
+        Route::get('/location',  [
+            'as' => 'location', 'uses' =>'HomeController@location']
+        );
+        Route::get('/calendar',  [
+            'as' => 'calendar', 'uses' =>'HomeController@calendar']
+        );
     
-    //Authentication
-    Route::auth();
+    //**        Authentication      **//
+        Route::auth();
     
     
-    //Users
-    Route::get('/profile',  [
-        'as' => 'user_dashboard', 'uses' =>'UserController@dashboard']
-    )->middleware('dashboard');
     
-    //Writers
+    
+    //**        Users       **//
+        Route::get('/profile',  [
+            'as' => 'user_dashboard', 'uses' =>'UserController@dashboard']
+        )->middleware('dashboard');
+        
+        //Ajax
+             Route::put('/edit',  [
+                'as' => 'edit', 'uses' =>'UserController@putProfile']
+            );
+            
+            
+            
+            
+        
+    //**        Writers     **//
     Route::get('/writer',  [
         'as' => 'writer_dashboard', 'uses' =>'WriterController@dashboard']
     );
     Route::get('/writer/users',  [
         'as' => 'writer_users', 'uses' =>'WriterController@users']
     );
+        
+        
     
     
     
     
-    //Admin
-     Route::get('/admin',  [
-        'as' => 'admin_dashboard', 'uses' =>'AdminController@dashboard']
-    );
-    Route::get('/admin/users',  [
-        'as' => 'admin_users', 'uses' =>'AdminController@users']
-    );
-    Route::get('/admin/users/pdf/{id}',  [
-        'as' => 'admin_users_pdf', 'uses' =>'AdminController@userPDF']
-    );
+    //**        Admin     **//
+        Route::get('/admin',  [
+            'as' => 'admin_dashboard', 'uses' =>'AdminController@dashboard']
+        );
+        Route::get('/admin/users',  [
+            'as' => 'admin_users', 'uses' =>'AdminController@users']
+        );
+        Route::get('/admin/users/pdf/{id}',  [
+            'as' => 'admin_users_pdf', 'uses' =>'AdminController@userPDF']
+        );
+    
+    
+    
+    
+    
+    
     
     
     

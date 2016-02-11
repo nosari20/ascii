@@ -21,10 +21,10 @@
                     </ul>
                 
             </aside>
-            <div class="col-xs-12 col-lg-10">
+            <div class="col-xs-12 col-lg-10 xs-p0">
                 
                 
-                <div class="col-md-12">
+                <div class="col-md-12 xs-p0">
                     <div class="content-box-large">
                         <div class="panel-heading">
                             <button id="toggle-edit" data-state="disabled" class="button-edit" type="button"><i class="fa fa-pencil"></i></button>
@@ -43,13 +43,13 @@
                                         </figure>
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
-                                        <a href="#" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}"></a>
-                                        <h2><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->name}}">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
-                                        <p><strong>Etablissement: </strong><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->school}}">{{$user->school}}</a> </p>
-                                        <p><strong>Etudes: </strong><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->level}}">{{$user->level}}</a> </p>
+                                        
+                                        <h2><a href="#" class="editable" data-type="text" id="firstname" data-title="{{$user->firstname}}">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" id="name"  data-title="{{$user->name}}">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
+                                        <p><strong>Etablissement: </strong><a href="#" class="editable" data-type="text" id="school"  data-title="{{$user->school}}">{{$user->school}}</a> </p>
+                                        <p><strong>Etudes: </strong><a href="#" class="editable" data-type="text" id="level"  data-title="{{$user->level}}">{{$user->level}}</a> </p>
                     
                                         @foreach($skills as $skill)
-                                            <div class="skillLine"><div class="skill pull-left">{{$skill->name}}</div><div class="rating" data-value="{{$skill->level}}"></div></div>
+                                            <div class="skillLine"><div class="skill pull-left">{{$skill->name}}</div><div class="rating" data-name="{{$skill->name}}" data-value="{{$skill->level}}"></div></div>
                                         @endforeach
                                         
                                     </div>
@@ -74,29 +74,63 @@
 
         <script type="text/javascript">
         $(document).ready(function() {
+            
+            //stars
             $('.rating').each(function(){
                 var val=$(this).data('value');
                 $(this).shieldRating({
                     max: 7,
-                    step: 0.5,
+                    step: 1,
                     value: val,
                     markPreset: false,
                      events: {
                         change: function (e) { 
-                            alert(e.target.value());
+                            var star=e.target;
+                          
+                            data=JSON.parse('{"star": '+true+', "value": '+star.value()+', "name": "'+$(star.element).data('name')+'"}');
+                           
+                            $.ajax({
+                                url: '{{route("edit")}}',
+                                type: 'PUT',
+                                data: data,                              
+                                
+                            });
                         }
                     }
                 });
+                $(this).swidget().enabled(false);
             
             })
+           
             
+            
+            //editable 
             $.fn.editable.defaults.mode = 'popup';
-            $(document).ready(function() {
-                    $('.editable').editable("disable"); 
-                     $('.rating').each(function(){              
-                        $(this).swidget().enabled(false);
-                    });
+            $.fn.editable.defaults.ajaxOptions = {
+                type: 'put',
+                    dataType: 'json',
+                    url: '{{route("edit")}}',
+                   
+            };
+            $.fn.editable.defaults.send= 'always';
+           
+            $('.editable').each(function(){
+                
+                $(this).editable({
+                    url: '{{route("edit")}}',
+                    defaultValue: 'Vide',
+                    error: function(response, newValue) {
+                        if(response.status === 500) {
+                            return 'Service non disponible.';
+                        } else {
+                            return response.responseText;
+                        }
+                    }
+                });  
+                $(this).editable("disable");    
             });
+           
+            
             
             
             
@@ -104,18 +138,21 @@
              //enable / disable
             $('#toggle-edit').click(function() {
                 if($(this).data('state')=='disabled'){
-                    console.log($('.editable'));
                     $('.editable').editable("enable");  
                     $('.rating').each(function(){              
                         $(this).swidget().enabled(true);
                     });
                     $(this).data('state','enabled');
+                    $(this).find('i').removeClass('fa-pencil');
+                    $(this).find('i').addClass('fa-times');
                 }else{
                     $('.editable').editable("disable");                
                     $('.rating').each(function(){              
                         $(this).swidget().enabled(false);
                     });
                     $(this).data('state','disabled');
+                    $(this).find('i').addClass('fa-pencil');
+                    $(this).find('i').removeClass('fa-times');
                 }
                 
                 

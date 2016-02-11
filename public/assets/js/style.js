@@ -1,6 +1,7 @@
 $(document).ready(function() {  
     
     
+    
      $(window).scroll(function() {
         if ($(".navbar-menu").offset().top > 50) {
             $("header").addClass("push");
