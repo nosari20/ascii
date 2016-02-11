@@ -45,8 +45,8 @@
                                     <div class="col-xs-12 col-sm-8">
                                         <a href="#" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}"></a>
                                         <h2><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->firstname}}">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->name}}">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
-                                        <p><strong>Etablissement: </strong>{{$user->school}} </p>
-                                        <p><strong>Etudes: </strong>{{$user->level}} </p>
+                                        <p><strong>Etablissement: </strong><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->school}}">{{$user->school}}</a> </p>
+                                        <p><strong>Etudes: </strong><a href="#" class="editable" data-type="text" data-pk="1" data-url="" data-title="{{$user->level}}">{{$user->level}}</a> </p>
                     
                                         @foreach($skills as $skill)
                                             <div class="skillLine"><div class="skill pull-left">{{$skill->name}}</div><div class="rating" data-value="{{$skill->level}}"></div></div>
@@ -78,9 +78,8 @@
                 var val=$(this).data('value');
                 $(this).shieldRating({
                     max: 7,
-                    step: 0,
+                    step: 0.5,
                     value: val,
-                    enabled:false,
                     markPreset: false,
                      events: {
                         change: function (e) { 
@@ -91,24 +90,31 @@
             
             })
             
-            $.fn.editable.defaults.mode = 'inline';
+            $.fn.editable.defaults.mode = 'popup';
             $(document).ready(function() {
-                    $('.editable').editable({
-                        disabled:true
+                    $('.editable').editable("disable"); 
+                     $('.rating').each(function(){              
+                        $(this).swidget().enabled(false);
                     });
             });
+            
             
             
             
              //enable / disable
             $('#toggle-edit').click(function() {
                 if($(this).data('state')=='disabled'){
-                    $('.editable').editable('toggleEnabled');                
-                    $('.rating').swidget().enabled(true);
+                    console.log($('.editable'));
+                    $('.editable').editable("enable");  
+                    $('.rating').each(function(){              
+                        $(this).swidget().enabled(true);
+                    });
                     $(this).data('state','enabled');
                 }else{
-                    $('.editable').editable('toggleDisabled');                
-                    $('.rating').swidget().enabled(false);
+                    $('.editable').editable("disable");                
+                    $('.rating').each(function(){              
+                        $(this).swidget().enabled(false);
+                    });
                     $(this).data('state','disabled');
                 }
                 
