@@ -25,14 +25,14 @@
                 
                 
                 <div class="col-md-12 xs-p0">
-                    <div class="content-box-large">
+                    <div class="content-box-large xs-p0">
                         <div class="panel-heading">
                             <button id="toggle-edit" data-state="disabled" class="button-edit" type="button"><i class="fa fa-pencil"></i></button>
                         </div>
                         
                         <div class="panel-body">
                         <div class="details">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 xs-p0">
                                 
                                     <div class="col-xs-12 col-sm-4 text-center  pull-right">                        
                                         <figure>

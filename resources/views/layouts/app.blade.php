@@ -139,7 +139,7 @@
         </header>
     
            <!-- Main -->
-        <section id="main" class="container">
+        <section id="main" class="container xs-p0">
         
         
         @yield('content')
