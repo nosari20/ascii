@@ -44,9 +44,9 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
                                         
-                                        <h2><a href="#" class="editable" data-type="text" id="firstname" data-title="{{$user->firstname}}">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" id="name"  data-title="{{$user->name}}">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
-                                        <p><strong>Etablissement: </strong><a href="#" class="editable" data-type="text" id="school"  data-title="{{$user->school}}">{{$user->school}}</a> </p>
-                                        <p><strong>Etudes: </strong><a href="#" class="editable" data-type="text" id="level"  data-title="{{$user->level}}">{{$user->level}}</a> </p>
+                                        <h2><a href="#" class="editable" data-type="text" id="firstname" data-title="Prénom">{{$user->firstname}}</a> <a href="#" class="editable" data-type="text" id="name"  data-title="Nom">{{$user->name}}</a> @if($user->right==2)(Administrateur)@endif @if($user->right==1)(Rédacteur)@endif</h2>
+                                        <p><strong>Etablissement: </strong><a href="#" class="editable" data-type="text" id="school"  data-title="Etablissement">{{$user->school}}</a> </p>
+                                        <p><strong>Etudes: </strong><a href="#" class="editable" data-type="text" id="level"  data-title="Cursus">{{$user->level}}</a> </p>
                     
                                         @foreach($skills as $skill)
                                             <div class="skillLine"><div class="skill pull-left">{{$skill->name}}</div><div class="rating" data-name="{{$skill->name}}" data-value="{{$skill->level}}"></div></div>
@@ -74,6 +74,11 @@
 
         <script type="text/javascript">
         $(document).ready(function() {
+            
+            $('.editable').click(function(e){
+                e.preventDefault();
+            })
+            
             
             //stars
             $('.rating').each(function(){
