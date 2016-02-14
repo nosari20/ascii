@@ -50,6 +50,7 @@ class UserController extends DisplayController
     
     //  AJAX //
     
+    
     public function putProfile(){
 
         $user=Auth::user();
@@ -76,6 +77,66 @@ class UserController extends DisplayController
         
        
         return  response()->json(array('response'=>'ok'));
+    }
+    
+    public function addSkill(){
+        $user=Auth::user();
+        
+        $name=Input::get('skill');
+  
+        $stars=Input::get('level');
+        
+        $skill=Skill::where('user','=',$user->id)->where('name','=',$name);
+        if($skill->count()>0){
+            $skill=$skill->first();
+            $rep='old';
+        }else{
+           $skill=new Skill(); 
+           $rep='new';
+        }
+        
+        
+        $skill->user=$user->id;
+        $skill->name=$name;
+        $skill->level=$stars;
+        $skill->save();
+        
+        return  response()->json(array('response'=>$rep,'skill'=>$skill->toArray()));
+    }
+    
+    
+    public function putImage(){
+
+        $user=Auth::user();
+        
+        
+        if (Input::has('image-data')) {
+            
+            
+            
+            $dir='upload/user/';
+            $file = $user->id.'.png';
+            $data = Input::get('image-data');
+            list($t, $data) = explode(';', $data);
+            list($t, $data)  = explode(',', $data);
+            $src = base64_decode($data);
+            
+            if(file_exists($dir.$file)){
+                unlink($dir.$file);
+            }
+            
+            file_put_contents($dir.$file, $src);
+            
+            $user->image=$file;
+            $user->save();
+         
+            
+            
+        }
+        return  response()->json(array('img'=>$dir.$file));
+        
+        
+        
     }
 }
 

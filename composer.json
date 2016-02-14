@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-dompdf": "0.6.*",
-        "google/apiclient": "1.0.*@beta"
+        "google/apiclient": "1.0.*@beta",
+        "folklore/image": "0.3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

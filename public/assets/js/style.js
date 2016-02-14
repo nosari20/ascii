@@ -69,6 +69,43 @@ $(document).ready(function() {
     
     
     
+    /*image editor */
+    if($('.image-editor')[0]){
+       
+        $('.image-editor').each(function() {
+            var err= $(this).find('.error');
+             
+            $(this).cropit({
+                imageState: {
+                    src: $(this).data('image'),
+                },
+                smallImagestring: 'allow',
+                minZoomstring: 'stretch',
+                onImageError: function(error) {
+                    $(err).addClass('error');
+                    if(error.code==1){
+                        $(err).text('L\'image est trop petite (minimum :256x256)');
+                    }else{
+                        $(err).text('Une erreur est survenu');
+                    }
+                },
+                onImageLoaded: function(){
+                     $(err).text('');
+                }
+               
+            });
+            $(this).cropit('previewSize', { width: 256, height: 256 });
+            $(this).cropit('exportZoom', 2);
+            
+        
+        });
+
+    
+    }
+    
+   
+    
+    
     
     
     

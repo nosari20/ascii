@@ -63,6 +63,12 @@ Route::group(['middleware' => 'web'], function () {
              Route::put('/edit',  [
                 'as' => 'edit', 'uses' =>'UserController@putProfile']
             );
+            Route::put('/edit-image',  [
+                'as' => 'edit_image', 'uses' =>'UserController@putImage']
+            );
+             Route::post('/add-skill',  [
+                'as' => 'add_skill', 'uses' =>'UserController@addSkill']
+            );
             
             
             
