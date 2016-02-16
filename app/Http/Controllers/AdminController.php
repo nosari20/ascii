@@ -22,25 +22,7 @@ class AdminController extends DisplayController
         
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-     
-     public function dashboard()
-    {
-        $user=Auth::user();
-        $this->data['user']=$user;
-        $this->data['right']=$user->right;
-        $this->data['skills']=$user->skills;
-        
-        return view('user.dashboard',$this->data);
-    }
-     
-     
-     
-     
+    
      
     public function users()
     {

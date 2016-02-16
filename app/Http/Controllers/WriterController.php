@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Input;
 class WriterController extends DisplayController
 {
     /**
@@ -35,14 +36,29 @@ class WriterController extends DisplayController
         return view('admin.users',$this->data);
     }
     
-    public function dashboard()
+    
+    
+    
+    public function calendar()
     {
-        $user=Auth::user();
-        $this->data['user']=$user;
-        $this->data['right']=$user->right;
-        $this->data['skills']=$user->skills;
         
-        return view('user.dashboard',$this->data);
+        
+        return view('writer.dashboard-calendar',$this->data);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //Ajax
+    public function addEvent(){
+        $user=Auth::user();
+        var_dump(Input::get());
+        
+      
     }
     
     

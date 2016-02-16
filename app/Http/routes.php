@@ -57,7 +57,7 @@ Route::group(['middleware' => 'web'], function () {
     //**        Users       **//
         Route::get('/profile',  [
             'as' => 'user_dashboard', 'uses' =>'UserController@dashboard']
-        )->middleware('dashboard');
+        );
         
         //Ajax
              Route::put('/edit',  [
@@ -75,12 +75,17 @@ Route::group(['middleware' => 'web'], function () {
             
         
     //**        Writers     **//
-    Route::get('/writer',  [
-        'as' => 'writer_dashboard', 'uses' =>'WriterController@dashboard']
-    );
-    Route::get('/writer/users',  [
-        'as' => 'writer_users', 'uses' =>'WriterController@users']
-    );
+        Route::get('/writer/users',  [
+            'as' => 'writer_users', 'uses' =>'WriterController@users']
+        );
+        Route::get('/edit-calendar',  [
+            'as' => 'edit-calendar', 'uses' =>'WriterController@calendar']
+        );
+        
+        //Ajax
+             Route::post('/add-event',  [
+                'as' => 'add_event', 'uses' =>'WriterController@addEvent']
+            );
         
         
     
@@ -88,9 +93,6 @@ Route::group(['middleware' => 'web'], function () {
     
     
     //**        Admin     **//
-        Route::get('/admin',  [
-            'as' => 'admin_dashboard', 'uses' =>'AdminController@dashboard']
-        );
         Route::get('/admin/users',  [
             'as' => 'admin_users', 'uses' =>'AdminController@users']
         );

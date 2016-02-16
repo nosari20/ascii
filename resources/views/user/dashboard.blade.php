@@ -4,23 +4,10 @@
         <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     @endsection
     @section('content')
+    
         <div class="col-sm-12 col-md-12 dashboard">
-            <aside class="col-xs-12 col-lg-2 content-box-large">
-                <ul class="nav">
-                    
-                    
-                        <li class="current"><a href="#"><i class="glyphicon glyphicon-home"></i>Dashboard</a></li>
-                        <li><a href="#"><i class="fa fa-user"></i>Profil</a></li>
-                        <li><a href="#"><i class="fa fa-graduation-cap"></i>Cours</a></li>
-                        @if($right>0)
-                            @include('writer.dashboard-menu')
-                        @endif
-                        
-                   
-                            
-                    </ul>
-                
-            </aside>
+            @include('user.dashboard-menu')
+            
             <div class="col-xs-12 col-lg-10 xs-p0">
                 
                 
@@ -69,7 +56,7 @@
         
 <!-- Modal -->
         
-<div id="picture" class="modal center" role="dialog">
+<div id="picture" class="modal" role="dialog">
     <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -110,7 +97,7 @@
 </div>
 
 
-<div id="skill" class="modal center" role="dialog">
+<div id="skill" class="modal" role="dialog">
     <div class="modal-dialog">
 
     <!-- Modal content-->
