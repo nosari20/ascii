@@ -14,10 +14,10 @@ class Event extends Migration
     {
         Schema::create('event', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('type');
-            $table->date('debut');
-            $table->date('fin');
+            $table->timestamp('start');
+            $table->timestamp('end');
             
 
         });

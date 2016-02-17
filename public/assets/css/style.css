@@ -1010,6 +1010,11 @@ footer{
   background: rgba(0, 0, 0, 0.2);
 }
 
+.fc-today {
+    background: aliceblue;
+}
+
+
 .fc-event {
   padding: 0;
   font-size: 11px;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
 use Auth;
 use Illuminate\Support\Facades\Input;
 class WriterController extends DisplayController
@@ -56,10 +57,61 @@ class WriterController extends DisplayController
     //Ajax
     public function addEvent(){
         $user=Auth::user();
-        var_dump(Input::get());
+        $event=Input::get();
         
+        $input = 'd/m/Y H:i';
+        $output= 'm/d/Y H:i';
+        
+        $start=\DateTime::createFromFormat($input, $event['start']);
+        $end=\DateTime::createFromFormat($input, $event['end']);
+        
+        $event['start'] = date_format($start, $output);
+        $event['end'] = date_format($end, $output);
+        
+       
+        
+
+        $e=new Event();
+        $e->title=$event['title'];
+        $e->type="";
+        $e->start=$start;
+        $e->end=$end;
+        $e->save();
+
+        $event['id'] = $e->id;
+        
+        
+        return  response()->json(array('response'=>'ok','event'=>$event));
       
     }
+    
+    
+    public function modEvent(){
+        $user=Auth::user();
+        $input=Input::get();
+        
+        $inputf = 'm/d/Y H:i';
+        $start=\DateTime::createFromFormat($inputf, $input['start']);
+        $end=\DateTime::createFromFormat($inputf, $input['end']);
+        
+      
+        
+        
+        $event=Event::findOrfail($input['id']);
+        var_dump($input['start']);
+        var_dump($event->start);
+        $event->title=$input['title'];
+        $event->start=$start;
+        $event->end=$end;
+        $event->save();
+        var_dump($event->start);
+        
+        //return  response()->json(array('response'=>'ok','event'=>$event));
+      
+    }
+    
+    
+    
     
     
 }

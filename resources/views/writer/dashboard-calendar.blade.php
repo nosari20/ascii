@@ -42,7 +42,7 @@
             <form  id="new-form">
                     <div class="form-group">
                         <label for="name">Nom de l'évenement</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="name" name="title" required>
                     </div>
                     <div class="form-group">
                         <label for="start">Début</label>
@@ -114,76 +114,80 @@
                             prevYear: 'left-double-arrow',
                             nextYear: 'right-double-arrow'
                         },
-                        defaultDate: '2014-06-12',
+                        defaultDate: new Date(),
                         editable: true,
+                        nowIndicator: true,
                         
                         dayClick: function(date, jsEvent, view) {
 
-                            console.log('Clicked on: ' + date.format());
-
-                            console.log('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-                            console.log('Current view: ' + view.name);
-
-                            // change the day's background color just for fun
-                            $(this).css('background-color', 'red');
+                           
                             
-                            
-                            $('#start').val(date.format('MM/DD/YYYY HH:MM'));
-                            $('#end').val(date.format('MM/DD/YYYY HH:MM'));
+                            $('#start').val(date.format('DD/MM/YYYY HH:MM'));
+                            $('#end').val(date.format('DD/MM/YYYY HH:MM'));
                             $('#new').modal('show');
+                            
+
+                        },
+                        eventResize: function(event, delta, revertFunc) {
+
+                            data=new Object();
+                            data.title=event.title;
+                            data.start=event.start.format('MM/DD/YYYY HH:MM');
+                            data.end=event.end.format('MM/DD/YYYY HH:MM');
+                            data.id=event.id;
+                            console.log(event);
+                            
+                            $.ajax({
+                                url: '{{route("mod_event")}}',
+                                type: 'PUT',
+                                data: data,
+                                success: function(data){
+                                    /*
+                                    if(data.response!='ok'){
+                                        //revertFunc();
+                                    }
+                                    */
+                                    
+                                    
+                                }                              
+                                
+                            });
+
+                            
+                        },
+                        
+                        eventDrop: function(event, delta, revertFunc) {
+
+                            data=new Object();
+                            data.title=event.title;
+                            data.start=event.start.format('MM/DD/YYYY HH:MM');
+                            data.end=event.end.format('MM/DD/YYYY HH:MM');
+                            data.id=event.id;
+                            console.log(event);
+                            
+                            $.ajax({
+                                url: '{{route("mod_event")}}',
+                                type: 'PUT',
+                                data: data,
+                                success: function(data){
+                                    /*
+                                    if(data.response!='ok'){
+                                        //revertFunc();
+                                    }
+                                    */
+                                    
+                                    
+                                }                              
+                                
+                            });
+
                             
 
                         },
                         
                         
-                        events: [
-                            {
-                                title: 'All Day',
-                                start: '2014-06-01',
-                                className: 'bgm-cyan'
-                            },
-                            {
-                                title: 'Long Event',
-                                start: '2014-06-07',
-                                end: '2014-06-10',
-                                className: 'bgm-orange'
-                            },
-                            {
-                                id: 999,
-                                title: 'Repeat',
-                                start: '2014-06-09',
-                                className: 'bgm-lightgreen'
-                            },
-                            {
-                                id: 999,
-                                title: 'Repeat',
-                                start: '2014-06-16',
-                                className: 'bgm-blue'
-                            },
-                            {
-                                title: 'Meet',
-                                start: '2014-06-12',
-                                end: '2014-06-12',
-                                className: 'bgm-teal'
-                            },
-                            {
-                                title: 'Lunch',
-                                start: '2014-06-12',
-                                className: 'bgm-gray'
-                            },
-                            {
-                                title: 'Birthday',
-                                start: '2014-06-13',
-                                className: 'bgm-pink'
-                            },
-                            {
-                                title: 'Google',
-                                url: 'http://google.com/',
-                                start: '2014-06-28',
-                                className: 'bgm-bluegray'
-                            }
-                        ],
+                        events: '{{route("events")}}'
+                        
                         
                     
                     });
@@ -196,28 +200,29 @@
                         type: 'POST',
                         data: formValue,
                         success: function(data){
-                            /*
+                            if(data.response=='ok'){
                             var newEvent = new Object();
-
-                            newEvent.title = "some text";
-                            newEvent.start = new Date();
+                            console.log(moment(data.event.start));
+                            
+                            console.log(new Date(data.event.start));   
+                            
+                                 
+                            newEvent.title = data.event.title;
+                            newEvent.id = data.event.id;
+                            newEvent.start = new Date(data.event.start);
+                            newEvent.end = new Date(data.event.end);
                             newEvent.allDay = false;
-                            $('#calendar').fullCalendar( 'renderEvent', newEvent );
-                            */
+                            $('#calendar-widget').fullCalendar( 'renderEvent', newEvent );
+                            }
+                            
+                            
                         }                              
                         
                     });
                     return false;
                 });
                     
-                    /*
-                    var newEvent = new Object();
-
-                    newEvent.title = "some text";
-                    newEvent.start = new Date();
-                    newEvent.allDay = false;
-                    $('#calendar').fullCalendar( 'renderEvent', newEvent );
-                    */
+                    
            });      
     
     </script>

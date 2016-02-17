@@ -47,6 +47,12 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/calendar',  [
             'as' => 'calendar', 'uses' =>'HomeController@calendar']
         );
+        
+        
+        //Ajax 
+            Route::get('/event',  [
+                'as' => 'events', 'uses' =>'HomeController@events']
+            );
     
     //**        Authentication      **//
         Route::auth();
@@ -83,9 +89,13 @@ Route::group(['middleware' => 'web'], function () {
         );
         
         //Ajax
-             Route::post('/add-event',  [
+             Route::post('/event',  [
                 'as' => 'add_event', 'uses' =>'WriterController@addEvent']
             );
+            Route::put('/event',  [
+                'as' => 'mod_event', 'uses' =>'WriterController@modEvent']
+            );
+            
         
         
     

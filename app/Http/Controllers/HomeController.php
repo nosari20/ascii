@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Event;
 
 class HomeController extends DisplayController
 {
@@ -43,5 +44,28 @@ class HomeController extends DisplayController
     public function calendar()
     {
         return view('public.calendar',$this->data);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Ajax
+    
+     public function events()
+    {
+        $events=Event::all();
+        
+        return  response()->json($events);
+      
+        
+        
+        
+        
     }
 }
