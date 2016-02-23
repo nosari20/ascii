@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     protected $table = 'news';
+    public $timestamps = false;
     
-    public function writer(){
-        return $this->belongsTo('App/User', 'user', 'id');
-    }
+    
 }

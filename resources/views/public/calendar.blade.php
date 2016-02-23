@@ -16,6 +16,48 @@
                 <div id="calendar-widget"></div>
             </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- Modal -->
+        
+
+
+
+<div id="new" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-body">
+            
+                    <div class="col-sm-12">
+                        
+                        <p id="name"></p>
+                        <p id="start"></p>
+                        <p id="end"></p>
+                        <p id="desc"></p>
+                    </div>
+                    
+  
+                
+       
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+    </div>
+
+    </div>
+</div>
 
     @endsection
 
@@ -53,6 +95,20 @@
                         defaultDate: new Date(),
                         editable: false,
                         nowIndicator: true,
+                         eventClick: function(calEvent, jsEvent, view) {
+
+                          
+                            $('#new').find("#name").text(calEvent.title);
+                            $('#new').find('#desc').text(calEvent.desc);
+                            $('#new').find('#start').text(calEvent.start.format('DD/MM/YYYY HH:MM'));
+                            $('#new').find('#end').text(calEvent.end.format('DD/MM/YYYY HH:MM'));
+                            
+                            $('#new').modal('show');
+
+
+                           
+
+                        },
                         
                         
                         

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Event;
+use App\Events;
 
 class HomeController extends DisplayController
 {
@@ -59,7 +59,7 @@ class HomeController extends DisplayController
     
      public function events()
     {
-        $events=Event::all();
+        $events=Events::all();
         
         return  response()->json($events);
       

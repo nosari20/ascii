@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Event extends Migration
+class Events extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,7 @@ class Event extends Migration
         Schema::create('event', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('desc');
             $table->string('type');
             $table->timestamp('start');
             $table->timestamp('end');

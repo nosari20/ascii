@@ -1,7 +1,7 @@
 @extends('layouts.app')
     @section('extra-head')
         <link href="{{Request::root()}}/vendor/fullcalendar/fullcalendar.css" rel="stylesheet">
-         <link href="{{Request::root()}}/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="{{Request::root()}}/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     @endsection
     @section('content')
     
@@ -66,7 +66,13 @@
                             </div>
 
                     </div>
+                    <div class="form-group">
+                        <label for="desc">Description</label>
+                        <textarea class="form-control" rows="5" id="desc" name="desc"></textarea>
+                    </div>
                     
+                    
+                    <input type='number' class="hidden" name="id" id="id" value="-1" required/>
                     <button type="submit" class="btn btn-default">Valider</button>
                 </form>
             </div>
@@ -78,6 +84,8 @@
 
     </div>
 </div>
+
+
 
 
 
@@ -117,6 +125,7 @@
                         defaultDate: new Date(),
                         editable: true,
                         nowIndicator: true,
+                       
                         
                         dayClick: function(date, jsEvent, view) {
 
@@ -142,11 +151,7 @@
                                 type: 'PUT',
                                 data: data,
                                 success: function(data){
-                                    /*
-                                    if(data.response!='ok'){
-                                        //revertFunc();
-                                    }
-                                    */
+                                  
                                     
                                     
                                 }                              
@@ -163,18 +168,14 @@
                             data.start=event.start.format('MM/DD/YYYY HH:MM');
                             data.end=event.end.format('MM/DD/YYYY HH:MM');
                             data.id=event.id;
-                            console.log(event);
+ 
                             
                             $.ajax({
                                 url: '{{route("mod_event")}}',
                                 type: 'PUT',
                                 data: data,
                                 success: function(data){
-                                    /*
-                                    if(data.response!='ok'){
-                                        //revertFunc();
-                                    }
-                                    */
+                                    
                                     
                                     
                                 }                              
@@ -184,7 +185,21 @@
                             
 
                         },
-                        
+                        eventClick: function(calEvent, jsEvent, view) {
+
+                          
+                            $('#new').find("#name").val(calEvent.title);
+                            $('#new').find('#desc').val(calEvent.desc);
+                            $('#new').find('#start').val(calEvent.end.format('DD/MM/YYYY HH:MM'));
+                            $('#new').find('#end').val(calEvent.end.format('DD/MM/YYYY HH:MM'));
+                            $('#new').find('#id').val(calEvent.id);
+                            
+                            $('#new').modal('show');
+
+
+                           
+
+                        },
                         
                         events: '{{route("events")}}'
                         
@@ -200,19 +215,29 @@
                         type: 'POST',
                         data: formValue,
                         success: function(data){
-                            if(data.response=='ok'){
+                            if(data.response=='add'){
                             var newEvent = new Object();
-                            console.log(moment(data.event.start));
-                            
-                            console.log(new Date(data.event.start));   
+                           
                             
                                  
                             newEvent.title = data.event.title;
+                            newEvent.desc = data.event.desc;
                             newEvent.id = data.event.id;
                             newEvent.start = new Date(data.event.start);
                             newEvent.end = new Date(data.event.end);
                             newEvent.allDay = false;
                             $('#calendar-widget').fullCalendar( 'renderEvent', newEvent );
+                            }else{
+                                
+                                
+                                
+                                
+                                 $('#calendar-widget').fullCalendar( 'refetchEvents' );
+                                  $('#new').find("#name").val("");
+                                    $('#new').find('#desc').val("");
+                                    $('#new').find('#start').val("");
+                                    $('#new').find('#end').val("");
+                                    $('#new').find('#id').val("-1");
                             }
                             
                             

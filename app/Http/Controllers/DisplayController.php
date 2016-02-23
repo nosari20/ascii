@@ -12,6 +12,8 @@ class DisplayController extends Controller{
     
     public function __construct()
     {
+        
+        
         //General data
         $user=Auth::user();
         if($user){

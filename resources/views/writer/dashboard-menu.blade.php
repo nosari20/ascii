@@ -1,5 +1,5 @@
-<li><a href="{{ route('edit-calendar') }}"><i class="glyphicon glyphicon-calendar"></i>Calendrier</a></li>
-<li><a href="#"><i class="fa fa-newspaper-o"></i>Actualités</a></li>
+<li><a href="{{ route('edit_calendar') }}"><i class="glyphicon glyphicon-calendar"></i>Calendrier</a></li>
+<li><a href="{{ route('edit_news') }}"><i class="fa fa-newspaper-o"></i>Actualités</a></li>
 @if($right>1)
     @include('admin.dashboard-menu')
 @endif

@@ -85,7 +85,11 @@ Route::group(['middleware' => 'web'], function () {
             'as' => 'writer_users', 'uses' =>'WriterController@users']
         );
         Route::get('/edit-calendar',  [
-            'as' => 'edit-calendar', 'uses' =>'WriterController@calendar']
+            'as' => 'edit_calendar', 'uses' =>'WriterController@calendar']
+        );
+        
+        Route::get('/edit-news',  [
+            'as' => 'edit_news', 'uses' =>'WriterController@news']
         );
         
         //Ajax
@@ -94,6 +98,9 @@ Route::group(['middleware' => 'web'], function () {
             );
             Route::put('/event',  [
                 'as' => 'mod_event', 'uses' =>'WriterController@modEvent']
+            );
+             Route::post('/news',  [
+                'as' => 'add_news', 'uses' =>'WriterController@addNews']
             );
             
         
