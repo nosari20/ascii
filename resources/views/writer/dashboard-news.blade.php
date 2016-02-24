@@ -108,7 +108,7 @@
                 $(document).ready(function(){
  
                    $('.datetimepicker').datetimepicker({
-                       format: 'DD/MM/YYYY HH:MM',
+                       format: 'DD/MM/YYYY h:mm',
                        locale: 'fr',
                    });
                    
