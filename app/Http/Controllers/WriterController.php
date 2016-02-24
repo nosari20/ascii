@@ -51,7 +51,8 @@ class WriterController extends DisplayController
      
     public function news()
     {
-        
+        $news = News::orderBy('date', 'desc')->get();
+        $this->data['news']=$news;
         
         return view('writer.dashboard-news',$this->data);
     }

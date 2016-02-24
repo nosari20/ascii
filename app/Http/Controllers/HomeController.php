@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Events;
+use App\News;
 
 class HomeController extends DisplayController
 {
@@ -38,6 +39,8 @@ class HomeController extends DisplayController
     
     public function news()
     {
+        $news = News::orderBy('date', 'desc')->get();
+        $this->data['news']=$news;
         return view('public.news',$this->data);
     }
     
